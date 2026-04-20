@@ -1,0 +1,93 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <app-user-info></app-user-info>
+    </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{ pageTitle }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">{{ pageTitle }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="account-section-page">
+    <app-account-scope></app-account-scope>
+
+    <section class="page-intro">
+      <div>
+        <h2>{{ pageTitle }}</h2>
+        <p>{{ pageDescription }}</p>
+      </div>
+      <ion-note>Showing records for {{ selectedAccountName }}</ion-note>
+    </section>
+
+    <section class="stats">
+      @for (summary of summaries; track summary.label) {
+        <ion-card>
+          <ion-card-content>
+            <p class="stat-label">{{ summary.label }}</p>
+            <strong>{{ summary.value }}</strong>
+          </ion-card-content>
+        </ion-card>
+      }
+    </section>
+
+    <section class="directory">
+      <div class="directory-toolbar">
+        <div>
+          <h2>{{ pageTitle }}</h2>
+          <p>{{ filteredRecords.length }} records shown for {{ selectedAccountName }}</p>
+        </div>
+
+        <ion-searchbar
+          animated="true"
+          [placeholder]="searchPlaceholder"
+          (ionInput)="onSearchChange($event)"
+        ></ion-searchbar>
+      </div>
+
+      <div class="record-list">
+        @if (filteredRecords.length === 0) {
+          <ion-card>
+            <ion-card-content>
+              <h3>No matching records</h3>
+              <p>{{ emptyMessage }}</p>
+            </ion-card-content>
+          </ion-card>
+        } @else {
+          @for (record of filteredRecords; track record.id) {
+            <ion-card>
+              <ion-card-content>
+                <div class="record-header">
+                  <div>
+                    <h3>{{ record.title }}</h3>
+                    <p>{{ record.subtitle }}</p>
+                  </div>
+
+                  <div class="record-badges">
+                    @for (badge of record.badges; track badge.label) {
+                      <ion-badge [color]="badge.color ?? 'medium'">{{ badge.label }}</ion-badge>
+                    }
+                  </div>
+                </div>
+
+                <div class="record-details">
+                  @for (detail of record.details; track detail) {
+                    <span>{{ detail }}</span>
+                  }
+                </div>
+              </ion-card-content>
+            </ion-card>
+          }
+        }
+      </div>
+    </section>
+  </div>
+</ion-content>

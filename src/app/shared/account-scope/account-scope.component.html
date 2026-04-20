@@ -1,0 +1,41 @@
+<section class="account-filter">
+  <div>
+    <p class="eyebrow">Selected Account</p>
+    <h2>{{ selectedAccount?.id }}</h2>
+    <p>{{ selectedAccount?.name }}</p>
+  </div>
+
+  <ion-button fill="outline" (click)="openAccountPicker()">
+    <ion-icon slot="start" name="swap-horizontal-outline"></ion-icon>
+    Choose Account
+  </ion-button>
+</section>
+
+<ion-modal [isOpen]="isAccountPickerOpen" (didDismiss)="closeAccountPicker()">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Select Account</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="closeAccountPicker()">Close</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="ion-padding">
+      <ion-list inset="true">
+        @for (account of accounts; track account.id) {
+          <ion-item button="true" detail="false" (click)="selectAccount(account.id)">
+            <ion-label>
+              <h2>{{ account.id }}</h2>
+              <p>{{ account.name }}</p>
+            </ion-label>
+            @if (selectedAccountId === account.id) {
+              <ion-icon slot="end" name="checkmark-circle" color="primary"></ion-icon>
+            }
+          </ion-item>
+        }
+      </ion-list>
+    </ion-content>
+  </ng-template>
+</ion-modal>

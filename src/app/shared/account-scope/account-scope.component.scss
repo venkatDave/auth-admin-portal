@@ -1,0 +1,41 @@
+.account-filter {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: center;
+  padding: 24px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #163b72 0%, #2e6bf1 100%);
+  color: #fff;
+  box-shadow: 0 20px 48px rgba(20, 45, 94, 0.18);
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.account-filter h2 {
+  margin: 0;
+  font-size: clamp(28px, 5vw, 34px);
+}
+
+.account-filter p:last-child {
+  margin: 8px 0 0;
+}
+
+.account-filter ion-button {
+  --background: #fff;
+  --color: #163b72;
+  --border-radius: 999px;
+}
+
+@media (max-width: 768px) {
+  .account-filter {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

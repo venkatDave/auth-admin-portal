@@ -1,0 +1,145 @@
+:host {
+  ion-content {
+    --background: linear-gradient(180deg, #f7f8fc 0%, #edf2fb 100%);
+  }
+}
+
+.account-section-page {
+  padding: 24px 16px 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.page-intro {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
+.page-intro h2 {
+  margin: 0;
+  color: #102542;
+}
+
+.page-intro p {
+  margin: 8px 0 0;
+  color: var(--ion-color-medium);
+  max-width: 720px;
+}
+
+.page-intro ion-note {
+  padding-top: 6px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.stats ion-card,
+.directory ion-card {
+  margin: 0;
+  border-radius: 20px;
+  box-shadow: 0 16px 32px rgba(24, 41, 75, 0.08);
+}
+
+.stat-label {
+  margin: 0 0 8px;
+  color: var(--ion-color-medium);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.stats strong {
+  font-size: 30px;
+  color: #102542;
+}
+
+.directory {
+  margin-top: 24px;
+}
+
+.directory-toolbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.directory-toolbar h2 {
+  margin: 0;
+}
+
+.directory-toolbar p {
+  margin: 6px 0 0;
+  color: var(--ion-color-medium);
+}
+
+.directory-toolbar ion-searchbar {
+  max-width: 380px;
+  --background: #fff;
+  --border-radius: 18px;
+  --box-shadow: none;
+}
+
+.record-list {
+  display: grid;
+  gap: 14px;
+}
+
+.record-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.record-header h3 {
+  margin: 0;
+  color: #0f2747;
+}
+
+.record-header p {
+  margin: 6px 0 0;
+  color: var(--ion-color-medium);
+}
+
+.record-badges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.record-details {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+  color: #50627d;
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .page-intro,
+  .directory-toolbar,
+  .record-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .directory-toolbar ion-searchbar {
+    width: 100%;
+    max-width: none;
+  }
+
+  .record-badges {
+    justify-content: flex-start;
+  }
+}

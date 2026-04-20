@@ -1,0 +1,55 @@
+<ion-content [fullscreen]="true" class="login-screen">
+  <div class="login-layout">
+    <section class="brand-panel">
+      <p class="eyebrow">Admin Portal</p>
+      <h1>Secure access for account administration.</h1>
+      <p class="copy">
+        Sign in to manage users, configuration, templates, activation codes, licenses, and audit history.
+      </p>
+    </section>
+
+    <ion-card class="login-card">
+      <ion-card-header>
+        <ion-card-title>Sign In</ion-card-title>
+        <ion-card-subtitle>Session timeout is set to 10 minutes of inactivity.</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+          <ion-item>
+            <ion-input
+              label="Username"
+              labelPlacement="stacked"
+              formControlName="username"
+              placeholder="Enter username"
+            ></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input
+              label="Password"
+              labelPlacement="stacked"
+              type="password"
+              formControlName="password"
+              placeholder="Enter password"
+            ></ion-input>
+          </ion-item>
+
+          <div class="feedback">
+            @if (hasError('username')) {
+              <p>Username is required.</p>
+            }
+            @if (hasError('password')) {
+              <p>Password is required.</p>
+            }
+            @if (notice) {
+              <p class="notice">{{ notice }}</p>
+            }
+          </div>
+
+          <ion-button expand="block" type="submit">Login</ion-button>
+        </form>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

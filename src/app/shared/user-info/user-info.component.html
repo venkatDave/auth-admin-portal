@@ -1,0 +1,58 @@
+@if (isAuthenticated) {
+  <ion-button class="user-trigger" fill="clear" (click)="openPopover($event)">
+    <ion-avatar class="user-avatar" aria-hidden="true">
+      <span>{{ username[0] | uppercase }}</span>
+    </ion-avatar>
+    <div class="user-text">
+      <span class="label">User</span>
+      <strong>{{ username }}</strong>
+    </div>
+    <ion-icon name="chevron-down-outline" aria-hidden="true"></ion-icon>
+  </ion-button>
+
+  <ion-popover
+    [isOpen]="isPopoverOpen"
+    [event]="popoverEvent"
+    side="bottom"
+    alignment="end"
+    dismissOnSelect="true"
+    (didDismiss)="closePopover()"
+  >
+    <ng-template>
+      <ion-content class="ion-padding">
+        <div class="popover-header">
+          <ion-avatar class="user-avatar">
+            <span>{{ username[0] | uppercase }}</span>
+          </ion-avatar>
+          <div>
+            <p>Signed in as</p>
+            <strong>{{ username }}</strong>
+          </div>
+        </div>
+
+        <div class="popover-divider"></div>
+
+        <ion-list lines="none" class="popover-list">
+          <ion-item button="true" detail="false" (click)="viewProfile()">
+            <ion-icon slot="start" name="person-circle-outline"></ion-icon>
+            <ion-label>
+              <h3>Profile</h3>
+              <p>Administrator account</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+
+        <div class="session-card">
+          <span class="session-label">Session</span>
+          <strong>Timeout after {{ sessionTimeoutMinutes }} minutes inactive</strong>
+        </div>
+
+        <div class="popover-divider"></div>
+
+        <ion-button expand="block" color="danger" fill="outline" (click)="logout()">
+          Logout
+        </ion-button>
+      </ion-content>
+    </ng-template>
+  </ion-popover>
+}

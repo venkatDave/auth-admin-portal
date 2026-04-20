@@ -1,0 +1,145 @@
+
+:host {
+  ion-content {
+    --background: linear-gradient(180deg, #f7f8fc 0%, #edf2fb 100%);
+  }
+}
+
+.users-page {
+  padding: 24px 16px 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.stats ion-card,
+.directory ion-card {
+  margin: 0;
+  border-radius: 20px;
+  box-shadow: 0 16px 32px rgba(24, 41, 75, 0.08);
+}
+
+.stats strong {
+  font-size: 30px;
+  color: #102542;
+}
+
+.directory {
+  margin-top: 24px;
+}
+
+.directory-toolbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.directory-toolbar h2 { margin: 0; }
+
+.directory-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.directory-actions ion-searchbar {
+  max-width: 360px;
+  min-width: 280px;
+  --background: #fff;
+  --border-radius: 18px;
+  --box-shadow: none;
+}
+
+.directory-actions ion-button {
+  --border-radius: 16px;
+  margin: 0;
+}
+
+.user-list {
+  display: grid;
+  gap: 14px;
+}
+
+.user-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+}
+
+.user-main {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.user-main h3 {
+  margin: 0;
+  color: #0f2747;
+}
+
+.user-main p {
+  margin: 6px 0 0;
+  color: var(--ion-color-medium);
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  background: #d7e4ff;
+  color: #163b72;
+  font-weight: 700;
+}
+
+.user-meta {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.details-row {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 14px;
+  color: #50627d;
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .directory-toolbar,
+  .directory-actions,
+  .user-row,
+  .details-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .directory-actions,
+  .directory-actions ion-button {
+    width: 100%;
+  }
+
+  .directory-actions ion-searchbar {
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+  }
+
+  .user-meta {
+    justify-content: flex-start;
+  }
+}

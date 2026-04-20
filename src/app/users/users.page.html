@@ -1,0 +1,104 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>User Management</ion-title>
+    <ion-buttons slot="end">
+      <app-user-info></app-user-info>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">User Management</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="users-page">
+    <app-account-scope></app-account-scope>
+
+    <section class="stats">
+      <ion-card>
+        <ion-card-content>
+          <p class="stat-label">Total Users</p>
+          <strong>{{ totalUsers }}</strong>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card>
+        <ion-card-content>
+          <p class="stat-label">Active</p>
+          <strong>{{ activeUsers }}</strong>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card>
+        <ion-card-content>
+          <p class="stat-label">Pending Invites</p>
+          <strong>{{ pendingInvites }}</strong>
+        </ion-card-content>
+      </ion-card>
+    </section>
+
+    <section class="directory">
+      <div class="directory-toolbar">
+        <div>
+          <h2>User Directory</h2>
+          <p>{{ filteredUsers.length }} records shown for {{ selectedAccountName }}</p>
+        </div>
+
+        <div class="directory-actions">
+          <ion-searchbar
+            animated="true"
+            placeholder="Search by name, email, account, team, or role"
+            (ionInput)="onSearchChange($event)"
+          ></ion-searchbar>
+
+          <ion-button (click)="goToAddUser()">Add User</ion-button>
+        </div>
+      </div>
+
+      <div class="user-list">
+        @if (filteredUsers.length === 0) {
+          <ion-card class="empty-state">
+            <ion-card-content>
+              <h3>No matching users</h3>
+              <p>Try another search term, switch accounts, or add a new user to get started.</p>
+            </ion-card-content>
+          </ion-card>
+        } @else {
+          @for (user of filteredUsers; track user.id) {
+            <ion-card button="true" (click)="goToEditUser(user.id)">
+              <ion-card-content>
+                <div class="user-row">
+                  <div class="user-main">
+                    <div class="avatar">{{ user.firstName[0] }}{{ user.lastName[0] }}</div>
+
+                    <div>
+                      <h3>{{ user.firstName }} {{ user.lastName }}</h3>
+                      <p>{{ user.email }}</p>
+                    </div>
+                  </div>
+
+                  <div class="user-meta">
+                    <ion-badge color="primary">{{ user.role }}</ion-badge>
+                    <ion-badge [color]="statusTone(user.status)">{{ user.status }}</ion-badge>
+                  </div>
+                </div>
+
+                <div class="details-row">
+                  <span>{{ user.accountId }} · {{ user.accountName }}</span>
+                  <span>{{ user.team }}</span>
+                  <span>Last active: {{ user.lastActive }}</span>
+                </div>
+              </ion-card-content>
+            </ion-card>
+          }
+        }
+      </div>
+    </section>
+  </div>
+</ion-content>

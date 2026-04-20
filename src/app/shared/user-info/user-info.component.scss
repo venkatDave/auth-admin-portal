@@ -1,0 +1,116 @@
+:host {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.user-trigger {
+  --color: #12305f;
+  --padding-start: 6px;
+  --padding-end: 6px;
+  --ripple-color: rgba(18, 48, 95, 0.12);
+  height: auto;
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #1b63e0 0%, #0a45ad 100%);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 12px;
+}
+
+.user-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0 8px;
+  text-transform: none;
+}
+
+.user-text .label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ion-color-medium);
+}
+
+.user-text strong {
+  font-size: 14px;
+}
+
+.popover-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 220px;
+}
+
+.popover-header p {
+  margin: 0 0 4px;
+  color: var(--ion-color-medium);
+  font-size: 13px;
+}
+
+.popover-divider {
+  height: 1px;
+  margin: 16px 0;
+  background: rgba(18, 48, 95, 0.08);
+}
+
+.popover-list {
+  margin: 0;
+  padding: 0;
+}
+
+.popover-list ion-item {
+  --background: #f7faff;
+  --border-radius: 14px;
+  --padding-start: 12px;
+  --inner-padding-end: 12px;
+  margin: 0;
+}
+
+.popover-list h3 {
+  margin: 0;
+  font-size: 14px;
+  color: #12305f;
+}
+
+.popover-list p {
+  margin: 4px 0 0;
+  color: var(--ion-color-medium);
+  font-size: 13px;
+}
+
+.session-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: rgba(27, 99, 224, 0.08);
+  color: #12305f;
+}
+
+.session-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ion-color-medium);
+}
+
+.session-card strong {
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+@media (max-width: 640px) {
+  .user-text {
+    display: none;
+  }
+}

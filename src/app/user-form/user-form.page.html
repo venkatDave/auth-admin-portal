@@ -1,0 +1,127 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/users"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <app-user-info></app-user-info>
+    </ion-buttons >
+    <ion-title>{{ pageTitle }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="form-page">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>{{ pageTitle }}</ion-card-title>
+        <ion-card-subtitle>
+          {{ isEditMode ? 'Update user details and permissions.' : 'Create a new user profile for your team.' }}
+        </ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <form [formGroup]="userForm" (ngSubmit)="saveUser()">
+          <div class="form-grid">
+            <ion-item>
+              <ion-input
+                label="First Name"
+                labelPlacement="stacked"
+                formControlName="firstName"
+                placeholder="Ava"
+              ></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-input
+                label="Last Name"
+                labelPlacement="stacked"
+                formControlName="lastName"
+                placeholder="Patel"
+              ></ion-input>
+            </ion-item>
+
+            <ion-item class="full-width">
+              <ion-input
+                label="Email"
+                labelPlacement="stacked"
+                type="email"
+                formControlName="email"
+                placeholder="ava.patel@adminportal.dev"
+              ></ion-input>
+            </ion-item>
+
+            <ion-item class="full-width">
+              <ion-select
+                label="Account"
+                labelPlacement="stacked"
+                formControlName="accountId"
+                interface="popover"
+                placeholder="Choose an account"
+              >
+                @for (account of accounts; track account.id) {
+                  <ion-select-option [value]="account.id">
+                    {{ account.id }} - {{ account.name }}
+                  </ion-select-option>
+                }
+              </ion-select>
+            </ion-item>
+
+            <ion-item>
+              <ion-select label="Role" labelPlacement="stacked" formControlName="role" interface="popover">
+                @for (role of roles; track role) {
+                  <ion-select-option [value]="role">{{ role }}</ion-select-option>
+                }
+              </ion-select>
+            </ion-item>
+
+            <ion-item>
+              <ion-select label="Status" labelPlacement="stacked" formControlName="status" interface="popover">
+                @for (status of statuses; track status) {
+                  <ion-select-option [value]="status">{{ status }}</ion-select-option>
+                }
+              </ion-select>
+            </ion-item>
+
+            <ion-item class="full-width">
+              <ion-input
+                label="Team"
+                labelPlacement="stacked"
+                formControlName="team"
+                placeholder="Platform"
+              ></ion-input>
+            </ion-item>
+          </div>
+
+          <div class="validation">
+            @if (hasError('firstName', 'required')) {
+              <p>First name is required.</p>
+            }
+            @if (hasError('lastName', 'required')) {
+              <p>Last name is required.</p>
+            }
+            @if (hasError('email', 'required')) {
+              <p>Email is required.</p>
+            }
+            @if (hasError('email', 'email')) {
+              <p>Enter a valid email address.</p>
+            }
+            @if (hasError('accountId', 'required')) {
+              <p>Account is required.</p>
+            }
+            @if (hasError('team', 'required')) {
+              <p>Team is required.</p>
+            }
+          </div>
+
+          <div class="actions">
+            <ion-button fill="outline" color="medium" routerLink="/users">
+              Cancel
+            </ion-button>
+            <ion-button type="submit">{{ submitLabel }}</ion-button>
+          </div>
+        </form>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
